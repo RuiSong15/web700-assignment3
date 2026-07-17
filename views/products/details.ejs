@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - <%= product.name %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <main class="container" style="padding: 20px; max-width: 600px; margin: 0 auto;">
+        <h1>Product Details</h1>
+        
+        <hr>
+        
+        <div class="product-card" style="border: 1px solid #ccc; padding: 20px; border-radius: 8px; background-color: #fafafa;">
+            <p><strong>Product ID:</strong> <%= product.id %></p>
+            <p><strong>Name:</strong> <%= product.name %></p>
+            <p><strong>Category:</strong> <%= product.category %></p>
+            <p><strong>Brand:</strong> <%= product.brand || "N/A" %></p>
+            <p><strong>Price:</strong> $<%= Number(product.price).toFixed(2) %></p>
+            <p><strong>Stock Quantity:</strong> <%= product.stockQuantity %> units</p>
+            <p><strong>Availability:</strong> 
+                <% if (product.available) { %>
+                    <span style="color: green; font-weight: bold;">In Stock</span>
+                <% } else { %>
+                    <span style="color: red; font-weight: bold;">Out of Stock</span>
+                <% } %>
+            </p>
+            <p><strong>Added On:</strong> <%= new Date(product.createdAt).toLocaleString() %></p>
+        </div>
+
+        <br>
+        <!-- 返回商品列表的导航链接 -->
+        <a href="/products" style="text-decoration: none; color: #007BFF;">&larr; Back to Catalogue</a>
+    </main>
+</body>
+</html>
