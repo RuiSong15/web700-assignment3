@@ -1,4 +1,6 @@
-require("dotenv").config();
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
  
 const express = require("express");
  
@@ -314,21 +316,14 @@ app.use((error, req, res, next) => {
 async function startServer() {
     try {
         await sequelize.authenticate();
- 
         console.log("Connected to Neon PostgreSQL.");
- 
+
         app.listen(PORT, () => {
-            console.log(
-                `Server running at http://localhost:${PORT}`
-            );
+            console.log(`Server running at http://localhost:${PORT}`);
         });
     } catch (error) {
-        console.error(
-            "Unable to start the application:",
-            error.message
-        );
- 
-        process.exit(1);
+        console.error("Unable to start the application:", error.message);
+        // 
     }
 }
  
