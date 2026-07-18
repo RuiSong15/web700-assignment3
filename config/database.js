@@ -1,4 +1,5 @@
 const { Sequelize } = require("sequelize");
+const pg = require("pg");
  
 const connectionString = process.env.DATABASE_URL;
  
@@ -10,6 +11,7 @@ if (!connectionString) {
  
 const sequelize = new Sequelize(connectionString, {
     dialect: "postgres",
+    dialectModule: pg,
     logging: false,
  
     dialectOptions: {
