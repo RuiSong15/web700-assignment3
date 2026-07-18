@@ -45,6 +45,13 @@ app.get("/products", async (req, res, next) => {
     }
 });
 
+app.get("/products/new", (req, res) => {
+    res.render("products/new", {
+        errors: [],
+        values: {}
+    });
+});
+
 app.get("/products/:id", async (req, res, next) => {
     try {
         const id = Number.parseInt(req.params.id, 10);
@@ -71,13 +78,6 @@ app.get("/products/:id", async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-});
-
-app.get("/products/new", (req, res) => {
-    res.render("products/new", {
-        errors: [],
-        values: {}
-    });
 });
 
 app.post("/products", async (req, res, next) => {
